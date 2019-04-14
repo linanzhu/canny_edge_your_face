@@ -29,11 +29,10 @@ class image_converter:
         imgblur = cv2.blur(cv_image, (7,7))
         canny_edge = cv2.Canny(imgblur, 50, 80)
 
-        cv2.imshow("Image window", imgblur)
-        cv2.waitKey(3)
+        #cv2.imshow("Image window", imgblur)
+        #cv2.waitKey(3)
 
         try:
-            #self.image_pub.publish(self.bridge.cv2_to_imgmsg(cv_image, "bgr8"))
             self.image_pub.publish(self.bridge.cv2_to_imgmsg(canny_edge, "mono8"))
         except CvBridgeError as e:
             print(e)
